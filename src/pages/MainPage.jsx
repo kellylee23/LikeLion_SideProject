@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import useHoroscopeStore from "../store/horoscopeStore";
-
 import CardContainer from "../components/CardContainer";
 
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #FF8325;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
 function MainPage() {
-  return <CardContainer />;
+  return (
+    <>
+      <GlobalStyle />
+      <CardContainer />
+    </>
+  );
 }
 
 export default MainPage;
