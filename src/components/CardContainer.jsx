@@ -8,15 +8,16 @@ import front3 from "../img/front3.png";
 import backCard from "../img/backCard.png";
 
 const CardContainers = styled.div`
-  width: 391px;
-  min-height: 100vh;
-  margin: 0 auto;
-  background: #bbbbbb;
+  /* width: 391px; */
+  /* min-height: 100vh; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
   transition: all 0.5s ease-in-out;
 `;
 

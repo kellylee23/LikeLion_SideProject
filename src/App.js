@@ -21,7 +21,7 @@ function App() {
           <Route path="/main" element={<MainPage />} />
           {/* <Route path="/detail/:id" element={<DetailPage />} /> */}
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );
