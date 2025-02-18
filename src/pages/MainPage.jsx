@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CardContainer from "../components/CardContainer";
-
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
