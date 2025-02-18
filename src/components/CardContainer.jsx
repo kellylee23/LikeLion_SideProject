@@ -8,68 +8,89 @@ import front3 from "../img/front3.png";
 import backCard from "../img/backCard.png";
 
 const CardContainers = styled.div`
+  width: 391px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: #bbbbbb;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  margin-left: 100px;
-  margin-right: 100px;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+`;
+
+const CardWrapper = styled.div`
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  width: auto;
+  height: auto;
+  transform: ${({ spreadCards, index }) => {
+    if (spreadCards) {
+      if (index === 0) {
+        return "translateX(-150px)";
+      } else if (index === 1) {
+        return "translateX(-75px)";
+      } else if (index === 3) {
+        return "translateX(75px)";
+      } else if (index === 4) {
+        return "translateX(150px)";
+      }
+    } else {
+      return index === 2 ? "translateX(0)" : "translateX(0)";
+    }
+  }};
+  z-index: ${({ spreadCards, index }) => (spreadCards && index === 2 ? 10 : 1)};
 `;
 
 function CardContainer() {
-  const [openedCard, setOpenedCard] = useState(null); // 열린 카드의 인덱스
+  const [openedCard, setOpenedCard] = useState(null);
+  const [spreadCards, setSpreadCards] = useState(false);
+  const [firstClick, setFirstClick] = useState(true); // 첫 번째 클릭 여부 추가
 
-  // 카드 앞면과 뒷면 이미지 URLs
   const frontImages = [front1, front2, front3];
   const backImages = [backCard];
 
-  // 카드 이미지를 랜덤하게 뽑는 함수
   const getRandomImage = (paths) => {
     const randomIndex = Math.floor(Math.random() * paths.length);
     return paths[randomIndex];
   };
 
-  const cards = [1, 2, 3, 4, 5]; // 카드의 ID
+  const cards = [1, 2, 3, 4, 5];
 
-  // 랜덤 앞면과 뒷면 이미지 배열을 생성
   const [frontImagePaths, setFrontImagePaths] = useState([]);
   const [backImagePaths, setBackImagePaths] = useState([]);
 
-  // 랜덤 이미지 초기화 함수
-  const initializeRandomImages = () => {
+  useEffect(() => {
     const randomFronts = cards.map(() => getRandomImage(frontImages));
     const randomBacks = cards.map(() => getRandomImage(backImages));
 
     setFrontImagePaths(randomFronts);
     setBackImagePaths(randomBacks);
-  };
-
-  // 초기 랜덤 이미지 설정
-  useEffect(() => {
-    initializeRandomImages();
   }, []);
 
-  // 카드 클릭 시 상태 변경 및 랜덤 이미지 초기화
   const handleCardClick = (index) => {
-    setOpenedCard(openedCard === index ? null : index); // 카드 클릭 시 상태 변경
-    if (openedCard !== index) {
-      // 카드가 열렸을 때 랜덤 이미지 초기화
-      initializeRandomImages();
+    if (firstClick) {
+      setSpreadCards(true); // 첫 번째 클릭에서 카드를 펼치기만 함
+      setFirstClick(false);
+    } else {
+      setOpenedCard(index); // 두 번째 클릭에서 선택한 카드만 뒤집힘
     }
   };
 
   return (
     <CardContainers>
       {cards.map((cardId, index) => (
-        <Card
-          key={index}
-          cardId={cardId}
-          index={index}
-          openedCard={openedCard}
-          handleCardClick={handleCardClick}
-          frontImage={frontImagePaths[index]} // 랜덤 앞면 이미지
-          backImage={backImagePaths[index]} // 랜덤 뒷면 이미지
-        />
+        <CardWrapper key={index} spreadCards={spreadCards} index={index}>
+          <Card
+            cardId={cardId}
+            index={index}
+            openedCard={openedCard}
+            handleCardClick={handleCardClick}
+            frontImage={frontImagePaths[index]}
+            backImage={backImagePaths[index]}
+          />
+        </CardWrapper>
       ))}
     </CardContainers>
   );
