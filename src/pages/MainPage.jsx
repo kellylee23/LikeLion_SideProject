@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useHoroscopeStore from "../store/horoscopeStore";
 
 import CardContainer from "../components/CardContainer";
 
