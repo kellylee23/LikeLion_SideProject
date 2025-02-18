@@ -8,8 +8,6 @@ import front3 from "../img/front3.png";
 import backCard from "../img/backCard.png";
 
 const CardContainers = styled.div`
-  /* width: 391px; */
-  /* min-height: 100vh; */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -45,6 +43,10 @@ const CardWrapper = styled.div`
     }
   }};
   z-index: ${({ spreadCards, index }) => (spreadCards && index === 2 ? 10 : 1)};
+`;
+
+const Title = styled.div`
+  color: white;
 `;
 
 function CardContainer() {
@@ -83,20 +85,27 @@ function CardContainer() {
   };
 
   return (
-    <CardContainers>
-      {cards.map((cardId, index) => (
-        <CardWrapper key={index} spreadCards={spreadCards} index={index}>
-          <Card
-            cardId={cardId}
-            index={index}
-            openedCard={openedCard}
-            handleCardClick={handleCardClick}
-            frontImage={frontImagePaths[index]}
-            backImage={backImagePaths[index]}
-          />
-        </CardWrapper>
-      ))}
-    </CardContainers>
+    <>
+      <CardContainers>
+        {cards.map((cardId, index) => (
+          <CardWrapper key={index} spreadCards={spreadCards} index={index}>
+            <Card
+              cardId={cardId}
+              index={index}
+              openedCard={openedCard}
+              handleCardClick={handleCardClick}
+              frontImage={frontImagePaths[index]}
+              backImage={backImagePaths[index]}
+            />
+          </CardWrapper>
+        ))}
+        {!openedCard && (
+          <Title>
+            {firstClick ? "카드를 눌러주세요" : "카드를 선택해 주세요"}
+          </Title>
+        )}
+      </CardContainers>
+    </>
   );
 }
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
 
 const HoroscopeContainer = styled.div`
   display: flex;
@@ -10,11 +12,11 @@ const HoroscopeContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 100; /* 다른 요소에 가리지 않도록 설정 */
+  z-index: 100;
   font-size: 13px;
   color: #333;
   text-align: center;
-  width: 200px; /* 고정 크기 설정 */
+  width: 200px;
 `;
 
 const LineBox = styled.div`
@@ -43,6 +45,39 @@ const Line = styled.div`
   align-items: center;
 `;
 
+const ButtonDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+`;
+
+const HomeButton = styled.button`
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+`;
+
+const handleHomeClick = () => {
+  window.location.href = "/";
+};
+
+// const handleShareClick = () => {
+//   html2canvas(document.body).then((canvas) => {
+//     const dataURL = canvas.toDataURL("image/png");
+//     const link = document.createElement("a");
+//     link.href = dataURL;
+//     link.download = "entire_screenshot.png";
+//     link.click();
+//   });
+// };
+
 function HoroscopeText() {
   const [horoscope, setHoroscope] = useState({
     fortune: "로딩 중...",
@@ -58,12 +93,16 @@ function HoroscopeText() {
   }, []);
 
   return (
-    <HoroscopeContainer>
+    <HoroscopeContainer id="horoscope-container">
       <LineBox isVisible={isVisible}>
         <Line>오늘의 운세: </Line>
         <Line>--</Line>
         <Line>멋사 가입하기 ~</Line>
       </LineBox>
+      <ButtonDiv>
+        <HomeButton onClick={handleHomeClick}>홈으로</HomeButton>
+        <HomeButton>저장하기</HomeButton>
+      </ButtonDiv>
     </HoroscopeContainer>
   );
 }
