@@ -7,11 +7,11 @@ import backCard from "../img/backCard.png";
 import HoroscopeText from "./HoroscopeText";
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: relative; */
 `;
 
 const CardWrapper = styled.div`
