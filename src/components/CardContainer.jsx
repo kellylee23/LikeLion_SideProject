@@ -19,13 +19,16 @@ const CardContainers = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 0.5s ease-in-out;
+  width: 100%;
+  max-width: 100vw;
+  flex-wrap: nowrap;
 `;
 
 const CardWrapper = styled.div`
   position: absolute;
   transition: all 0.5s ease-in-out;
-  width: auto;
-  height: auto;
+  width: 10vw;
+  height: 25vh;
   transform: ${({ spreadCards, index }) => {
     if (spreadCards) {
       if (index === 0) {
@@ -74,7 +77,7 @@ function CardContainer() {
     if (firstClick) {
       setSpreadCards(true); // 첫 번째 클릭에서 카드를 펼치기만 함
       setFirstClick(false);
-    } else {
+    } else if (openedCard === null) {
       setOpenedCard(index); // 두 번째 클릭에서 선택한 카드만 뒤집힘
     }
   };
