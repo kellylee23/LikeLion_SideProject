@@ -17,6 +17,7 @@ const CardWrapper = styled.div`
   align-items: center;
   cursor: pointer;
   position: absolute;
+
   transition: transform 1.5s ease, opacity 0.5s ease;
 
   background-image: url(${backCard});
