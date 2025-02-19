@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import html2canvas from "html2canvas";
-import { saveAs } from "file-saver";
 
+// 기본 컨테이너 스타일
 const HoroscopeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,6 +18,7 @@ const HoroscopeContainer = styled.div`
   width: 200px;
 `;
 
+// 배경색과 그림자 등 기본 스타일을 설정한 Box
 const LineBox = styled.div`
   background-color: white;
   width: 100%;
@@ -31,20 +31,51 @@ const LineBox = styled.div`
   align-items: center;
   text-align: center;
   padding: 10px;
+  margin-top: 70px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   transition: opacity 1s ease-in-out;
 `;
 
-const Line = styled.div`
+const Title = styled.div`
+  font-size: 14px;
+  font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  color: #000000;
+  margin-top: 3px;
   margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-weight: bold;
 `;
 
+const Content = styled.div`
+  font-size: 9px;
+  font-family: "42dot Sans", serif;
+  color: #000000;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  opacity: 0.6;
+`;
+
+const Author = styled.div`
+  font-size: 9px;
+  font-family: "42dot Sans", serif;
+  color: #000000;
+  margin-top: -5px;
+  opacity: 0.7;
+`;
+
+// 클릭 가능한 링크 스타일
+const Link = styled.a`
+  font-size: 10px;
+  font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  color: #ff7710;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 5px;
+`;
+
+// 버튼 스타일
 const ButtonDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -53,55 +84,73 @@ const ButtonDiv = styled.div`
   gap: 10px;
 `;
 
+// 홈 버튼 스타일
 const HomeButton = styled.button`
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #000000;
-  color: white;
+  background-color: #fcd6c6;
+  font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  color: #000000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+
+  &:hover {
+    background-color: #ffea00; 
+    transform: scale(1.05); 
+  }
 `;
 
 const handleHomeClick = () => {
   window.location.href = "/";
 };
 
-// const handleShareClick = () => {
-//   html2canvas(document.body).then((canvas) => {
-//     const dataURL = canvas.toDataURL("image/png");
-//     const link = document.createElement("a");
-//     link.href = dataURL;
-//     link.download = "entire_screenshot.png";
-//     link.click();
-//   });
-// };
+// 더미 데이터 (API 호출 대신)
+const dummyData = {
+  fortune: "오늘은 모든 일이 순조롭게 진행될 것입니다. 기회가 찾아오고, 그 기회를 잘 활용하면 큰 성과를 거둘 수 있을 것입니다.",
+  quote: '"성공은 준비가 기회를 만났을 때 이루어진다."',
+  author: "– 헨리 포드",
+};
 
 function HoroscopeText() {
   const [horoscope, setHoroscope] = useState({
     fortune: "로딩 중...",
     quote: "",
+    author: "",
   });
 
   const [isVisible, setIsVisible] = useState(false);
 
+  // 더미 데이터를 상태에 저장
   useEffect(() => {
-    setTimeout(() => {
+    const fetchHoroscope = () => {
+      setHoroscope(dummyData);
       setIsVisible(true);
-    }, 500);
+    };
+
+    fetchHoroscope();
   }, []);
 
   return (
     <HoroscopeContainer id="horoscope-container">
       <LineBox isVisible={isVisible}>
-        <Line>오늘의 운세: </Line>
-        <Line>--</Line>
-        <Line>멋사 가입하기 ~</Line>
+        {/* 오늘의 운세 부분 */}
+        <Title>오늘의 운세</Title>
+        <Content>{horoscope.fortune}</Content>
+
+        {/* 명언 부분 */}
+        <Title>명언</Title>
+        <Content>{horoscope.quote}</Content>
+        <Author>{horoscope.author}</Author>
+
+        {/* 클릭 가능한 링크 */}
+        <Link href="https://forms.gle/D3j9oTqUfc6uwka68" target="_blank">
+          멋대 지원하러가기
+        </Link>
       </LineBox>
       <ButtonDiv>
         <HomeButton onClick={handleHomeClick}>홈으로</HomeButton>
-        <HomeButton>저장하기</HomeButton>
       </ButtonDiv>
     </HoroscopeContainer>
   );
