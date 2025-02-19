@@ -1,0 +1,11 @@
+Model Information:
+* title:	clover_obj_export2
+* source:	https://sketchfab.com/3d-models/clover-obj-export2-da54c1fd396f4683a3eca73809f4ad53
+* author:	sy.ha (https://sketchfab.com/sy.ha)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "clover_obj_export2" (https://sketchfab.com/3d-models/clover-obj-export2-da54c1fd396f4683a3eca73809f4ad53) by sy.ha (https://sketchfab.com/sy.ha) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
