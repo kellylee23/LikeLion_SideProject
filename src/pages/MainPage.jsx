@@ -9,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: #FF8325;
-    background: url(${backgroundImage}) no-repeat center center;
+    background: linear-gradient(to bottom, #FE5824, #ffb13c);
+    //background: url(${backgroundImage}) no-repeat center center;
     background-size: contain;  // contain을 사용하여 비율 유지
     background-position: center center;
     background-attachment: fixed;  // 배경이 고정되도록 설정

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import horoscopeCall from "../utils/horoscopeCall"; 
 
 // 기본 컨테이너 스타일
 const HoroscopeContainer = styled.div`
@@ -106,13 +107,6 @@ const handleHomeClick = () => {
   window.location.href = "/";
 };
 
-// 더미 데이터 (API 호출 대신)
-const dummyData = {
-  fortune: "오늘은 모든 일이 순조롭게 진행될 것입니다. 기회가 찾아오고, 그 기회를 잘 활용하면 큰 성과를 거둘 수 있을 것입니다.",
-  quote: '"성공은 준비가 기회를 만났을 때 이루어진다."',
-  author: "– 헨리 포드",
-};
-
 function HoroscopeText() {
   const [horoscope, setHoroscope] = useState({
     fortune: "로딩 중...",
@@ -122,11 +116,24 @@ function HoroscopeText() {
 
   const [isVisible, setIsVisible] = useState(false);
 
-  // 더미 데이터를 상태에 저장
+  // useEffect로 API 호출 및 데이터 업데이트
   useEffect(() => {
-    const fetchHoroscope = () => {
-      setHoroscope(dummyData);
-      setIsVisible(true);
+    const fetchHoroscope = async () => {
+      try {
+        const apiResponse = await horoscopeCall(); // API 호출
+        const parsedResponse = JSON.parse(apiResponse); // 응답을 JSON으로 파싱
+
+        // 응답을 상태에 업데이트
+        setHoroscope({
+          fortune: parsedResponse.fortune,
+          quote: parsedResponse.quote,
+          author: parsedResponse.author || "– 알 수 없음", // author가 없을 경우 처리
+        });
+
+        setIsVisible(true); // 데이터가 로딩되면 요소 보이기
+      } catch (error) {
+        console.error("운세 데이터를 가져오는 데 오류가 발생했습니다:", error);
+      }
     };
 
     fetchHoroscope();
@@ -142,7 +149,7 @@ function HoroscopeText() {
         {/* 명언 부분 */}
         <Title>명언</Title>
         <Content>{horoscope.quote}</Content>
-        <Author>{horoscope.author}</Author>
+        <Author>{horoscope.author}</Author> {/* author 부분 추가 */}
 
         {/* 클릭 가능한 링크 */}
         <Link href="https://forms.gle/D3j9oTqUfc6uwka68" target="_blank">
