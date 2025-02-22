@@ -61,7 +61,8 @@ const Container = styled.div`
   align-items: center; 
   height: 100vh; 
   justify-content: center; 
-  background: url(${backgroundImage}) no-repeat center center;
+  //background: url(${backgroundImage}) no-repeat center center;
+  background: linear-gradient(to bottom, #FE5824, #ffb13c);
   background-size: contain;  
   background-position: center center;
 `;
