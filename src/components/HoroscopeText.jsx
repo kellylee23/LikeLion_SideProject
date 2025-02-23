@@ -58,7 +58,7 @@ const Content = styled.div`
 
 // 클릭 가능한 링크 스타일
 const Link = styled.a`
-  font-size: 10px;
+  font-size: 18px;
   font-family: "Paperlogy-8ExtraBold", sans-serif;
   font-weight: bold;
   color: #ff7710;

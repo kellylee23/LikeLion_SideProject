@@ -3,7 +3,7 @@ import CardContainer from "../components/CardContainer";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import backgroundImage from '../img/12.jpg';  // 이미지 경로 확인
+import backgroundImage from "../img/12.jpg"; // 이미지 경로 확인
 
 const GlobalStyle = createGlobalStyle`
   body {
