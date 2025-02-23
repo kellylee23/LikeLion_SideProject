@@ -28,7 +28,7 @@ const StartButton = styled.button`
   transition: all 0.3s ease; 
 
   &:hover {
-    background-color: #ffea00; 
+    background-color: #fac4ad; 
     transform: scale(1.05); 
   }
 `;
