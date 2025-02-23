@@ -47,7 +47,8 @@ const CardWrapper = styled.div`
 
 const Title = styled.div`
   color: #000000;
-  font-family: 'Paperlogy-8ExtraBold', sans-serif; 
+  font-family: "Paperlogy-8ExtraBold", sans-serif;
+  margin-top: 70px;
 `;
 
 function CardContainer() {
