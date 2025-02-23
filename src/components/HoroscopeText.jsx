@@ -49,12 +49,11 @@ const Title = styled.div`
 `;
 
 const Content = styled.div`
-  font-size: 9px;
+  font-size: 10px;
   font-family: "42dot Sans", serif;
   color: #000000;
   margin-bottom: 10px;
   white-space: pre-wrap;
-  opacity: 0.6;
 `;
 
 
@@ -63,6 +62,7 @@ const Content = styled.div`
 const Link = styled.a`
   font-size: 10px;
   font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  font-weight: bold;
   color: #ff7710;
   text-decoration: underline;
   cursor: pointer;

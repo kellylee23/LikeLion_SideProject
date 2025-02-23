@@ -1,9 +1,12 @@
 @font-face {
-  font-family: 'SDSamliphopangche_Outline';
-  src: url('/fonts/SDSamliphopangcheTTFOutline.ttf') format('truetype');  
+  font-family: '42dot Sans';
+  src: url('/fonts/42dotSans-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-body {
-  font-family: 'SDSamliphopangche_Outline';
+@font-face {
+  font-family: 'Paperlogy';
+  src: url('/fonts/Paperlogy-5Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
