@@ -71,6 +71,7 @@ const HoroContainer = styled.div`
   align-items: center;
   flex-direction: row;
   margin-top: 50px;
+  margin-bottom: 50px;
   position: absolute;
   transition: transform 1.5s ease;
   top: 50%;

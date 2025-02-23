@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import horoscopeCall from "../utils/horoscopeCall"; 
+import horoscopeCall from "../utils/horoscopeCall";
 
 // 기본 컨테이너 스타일
 const HoroscopeContainer = styled.div`
@@ -41,7 +41,7 @@ const LineBox = styled.div`
 
 const Title = styled.div`
   font-size: 14px;
-  font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  font-family: "Paperlogy-8ExtraBold", sans-serif;
   color: #000000;
   margin-top: 3px;
   margin-bottom: 10px;
@@ -56,12 +56,10 @@ const Content = styled.div`
   white-space: pre-wrap;
 `;
 
-
-
 // 클릭 가능한 링크 스타일
 const Link = styled.a`
   font-size: 10px;
-  font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  font-family: "Paperlogy-8ExtraBold", sans-serif;
   font-weight: bold;
   color: #ff7710;
   text-decoration: underline;
@@ -84,7 +82,7 @@ const HomeButton = styled.button`
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #fcd6c6;
-  font-family: 'Paperlogy-8ExtraBold', sans-serif;
+  font-family: "Paperlogy-8ExtraBold", sans-serif;
   color: #000000;
   border: none;
   border-radius: 5px;
@@ -92,8 +90,8 @@ const HomeButton = styled.button`
   font-size: 14px;
 
   &:hover {
-    background-color: #fac4ad;  
-    transform: scale(1.05); 
+    background-color: #fac4ad;
+    transform: scale(1.05);
   }
 `;
 
@@ -115,25 +113,27 @@ function HoroscopeText() {
     const fetchHoroscope = async () => {
       try {
         const apiResponse = await horoscopeCall(); // API 호출
-  
+
         // 만약 apiResponse가 문자열이라면 JSON.parse를 통해 파싱
-        const parsedResponse = typeof apiResponse === 'string' ? JSON.parse(apiResponse) : apiResponse;
-  
+        const parsedResponse =
+          typeof apiResponse === "string"
+            ? JSON.parse(apiResponse)
+            : apiResponse;
+
         // 응답을 상태에 업데이트
         setHoroscope({
           fortune: parsedResponse.fortune,
           quote: parsedResponse.quote,
         });
-  
+
         setIsVisible(true); // 데이터가 로딩되면 요소 보이기
       } catch (error) {
         console.error("운세 데이터를 가져오는 데 오류가 발생했습니다:", error);
       }
     };
-  
+
     fetchHoroscope();
   }, []);
-  
 
   return (
     <HoroscopeContainer id="horoscope-container">
