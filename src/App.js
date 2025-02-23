@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+
 import MainPage from "./pages/MainPage";
 import StartPage from "./pages/StartPage";
 
