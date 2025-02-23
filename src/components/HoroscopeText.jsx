@@ -32,7 +32,7 @@ const LineBox = styled.div`
   align-items: center;
   text-align: center;
   padding: 10px;
-  margin-top: 70px;
+  margin-top: 120px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
