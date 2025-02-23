@@ -9,15 +9,21 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.onbeforeunload = () => {
+    const handlePageHide = () => {
       sessionStorage.setItem("shouldNavigateToStart", "true");
     };
+
+    window.addEventListener("pagehide", handlePageHide);
 
     // 새로고침 후 StartPage로 이동
     if (sessionStorage.getItem("shouldNavigateToStart") === "true") {
       navigate("/");
       sessionStorage.removeItem("shouldNavigateToStart");
     }
+
+    return () => {
+      window.removeEventListener("pagehide", handlePageHide);
+    };
   }, [navigate]);
 
   return (
