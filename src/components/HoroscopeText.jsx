@@ -57,13 +57,7 @@ const Content = styled.div`
   opacity: 0.6;
 `;
 
-const Author = styled.div`
-  font-size: 9px;
-  font-family: "42dot Sans", serif;
-  color: #000000;
-  margin-top: -5px;
-  opacity: 0.7;
-`;
+
 
 // 클릭 가능한 링크 스타일
 const Link = styled.a`
@@ -98,7 +92,7 @@ const HomeButton = styled.button`
   font-size: 14px;
 
   &:hover {
-    background-color: #ffea00; 
+    background-color: #fac4ad;  
     transform: scale(1.05); 
   }
 `;
@@ -121,23 +115,25 @@ function HoroscopeText() {
     const fetchHoroscope = async () => {
       try {
         const apiResponse = await horoscopeCall(); // API 호출
-        const parsedResponse = JSON.parse(apiResponse); // 응답을 JSON으로 파싱
-
+  
+        // 만약 apiResponse가 문자열이라면 JSON.parse를 통해 파싱
+        const parsedResponse = typeof apiResponse === 'string' ? JSON.parse(apiResponse) : apiResponse;
+  
         // 응답을 상태에 업데이트
         setHoroscope({
           fortune: parsedResponse.fortune,
           quote: parsedResponse.quote,
-          author: parsedResponse.author || "– 알 수 없음", // author가 없을 경우 처리
         });
-
+  
         setIsVisible(true); // 데이터가 로딩되면 요소 보이기
       } catch (error) {
         console.error("운세 데이터를 가져오는 데 오류가 발생했습니다:", error);
       }
     };
-
+  
     fetchHoroscope();
   }, []);
+  
 
   return (
     <HoroscopeContainer id="horoscope-container">
@@ -149,7 +145,6 @@ function HoroscopeText() {
         {/* 명언 부분 */}
         <Title>명언</Title>
         <Content>{horoscope.quote}</Content>
-        <Author>{horoscope.author}</Author> {/* author 부분 추가 */}
 
         {/* 클릭 가능한 링크 */}
         <Link href="https://forms.gle/D3j9oTqUfc6uwka68" target="_blank">
